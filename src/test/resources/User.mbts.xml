@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="db.table.user">
+
+    <resultMap type="java.util.HashMap" id="HashMap"></resultMap>
+    <select id="queryTotalCountClassBar" statementType="CALLABLE">
+        <![CDATA[
+            {call P_CSM_CUST_COUNT(
+                #{retCode,mode=OUT,jdbcType=NUMERIC},
+                #{acResult,mode=OUT,jdbcType=CURSOR, resultMap=HashMap},
+                #{userId}
+            )}
+        ]]>
+    </select>
+
+</mapper>
