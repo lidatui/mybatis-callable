@@ -6,6 +6,7 @@ import org.apache.ibatis.type.JdbcType;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,14 +17,19 @@ import java.util.Map;
 public class SimpleResultHandler implements CallableResultHandler {
     public Object proceed(List<ParameterMapping> parameterMappings, Map<String, Object> result) {
         List list = new ArrayList();
+        Map<String,Object> map = new HashMap<String, Object>();
         for (ParameterMapping parameterMapping : parameterMappings){
-            if(ParameterMode.OUT.equals(parameterMapping.getMode()) || ParameterMode.INOUT.equals(parameterMapping.getMode())){
+            if(!"retCode".equals(parameterMapping.getProperty())
+                    && (ParameterMode.OUT.equals(parameterMapping.getMode()) || ParameterMode.INOUT.equals(parameterMapping.getMode()))){
                 list.add(result.get(parameterMapping.getProperty()));
+                map.put(parameterMapping.getProperty(),result.get(parameterMapping.getProperty()));
             }
         }
         if(list.size() == 1 && list.get(0) instanceof List){
             return list.get(0);
         }
+        list.clear();
+        list.add(map);
         return list;
     }
 }
