@@ -16,7 +16,7 @@
         <![CDATA[
             {call test_proc(
                 #{retCode,mode=OUT,jdbcType=INTEGER},
-                #{acResult,mode=OUT,jdbcType=CURSOR, resultMap=HashMap},
+                #{acResult,mode=OUT,jdbcType=CURSOR,javaType=ResultSet, resultMap=HashMap},
                 #{user.type},
                 #{branchCode}
             )}

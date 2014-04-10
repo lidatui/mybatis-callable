@@ -21,6 +21,9 @@ public class SimpleResultHandler implements CallableResultHandler {
                 list.add(result.get(parameterMapping.getProperty()));
             }
         }
+        if(list.size() == 1 && list.get(0) instanceof List){
+            return list.get(0);
+        }
         return list;
     }
 }
