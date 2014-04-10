@@ -19,8 +19,7 @@ public class SimpleResultHandler implements CallableResultHandler {
         List list = new ArrayList();
         Map<String,Object> map = new HashMap<String, Object>();
         for (ParameterMapping parameterMapping : parameterMappings){
-            if(!"retCode".equals(parameterMapping.getProperty())
-                    && (ParameterMode.OUT.equals(parameterMapping.getMode()) || ParameterMode.INOUT.equals(parameterMapping.getMode()))){
+            if(ParameterMode.OUT.equals(parameterMapping.getMode()) || ParameterMode.INOUT.equals(parameterMapping.getMode())){
                 list.add(result.get(parameterMapping.getProperty()));
                 map.put(parameterMapping.getProperty(),result.get(parameterMapping.getProperty()));
             }
