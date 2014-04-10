@@ -1,7 +1,7 @@
 package com.github.miemiedev.mybatis.callable;
 
 import com.github.miemiedev.mybatis.callable.handler.CallableResultHandler;
-import com.github.miemiedev.mybatis.callable.handler.SingleCursorResultHandler;
+import com.github.miemiedev.mybatis.callable.handler.SimpleResultHandler;
 import com.github.miemiedev.mybatis.callable.support.PropertiesHelper;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.*;
@@ -28,7 +28,7 @@ public class CallableConvertInterceptor implements Interceptor {
     static int ROWBOUNDS_INDEX = 2;
     static int RESULT_HANDLER_INDEX = 3;
 
-    CallableResultHandler callableResultHandler = new SingleCursorResultHandler();
+    CallableResultHandler callableResultHandler = new SimpleResultHandler();
 
     public Object intercept(Invocation invocation) throws Throwable {
         final Executor executor = (Executor) invocation.getTarget();
@@ -45,7 +45,7 @@ public class CallableConvertInterceptor implements Interceptor {
 
         Map<String, Object> parameterMap = new HashMap<String, Object>();
         if(parameter instanceof Map){
-            parameterMap.putAll((Map)parameter);
+            parameterMap = (Map)parameter;
         }else{
             for (ParameterMapping parameterMapping : parameterMappings) {
                 if(parameterMapping.getMode().equals(ParameterMode.IN) || parameterMapping.getMode().equals(ParameterMode.INOUT)){
@@ -73,7 +73,7 @@ public class CallableConvertInterceptor implements Interceptor {
 
     public void setProperties(Properties properties) {
         PropertiesHelper propertiesHelper = new PropertiesHelper(properties);
-        String dialectClass = propertiesHelper.getProperty("resultHandler","com.github.miemiedev.mybatis.callable.handler.SingleCursorResultHandler");
+        String dialectClass = propertiesHelper.getProperty("resultHandler","com.github.miemiedev.mybatis.callable.handler.SimpleResultHandler");
         try {
             setResultHandler((CallableResultHandler) Class.forName(dialectClass).newInstance());
         } catch (Exception e) {

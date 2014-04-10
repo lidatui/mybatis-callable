@@ -1,4 +1,6 @@
 package com.github.miemiedev.mybatis.callable;
+import org.apache.ibatis.session.ResultContext;
+import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
@@ -18,7 +20,7 @@ public class PaginatorTester extends SimulateBaseDao{
         User user = new User();
         user.setId(2950L);
         user.setName("libin");
-
+        user.setType("yhfl_nbyh");
         Object list = queryTotalCountClassBar(user);
 
         System.out.println(list);
@@ -29,35 +31,17 @@ public class PaginatorTester extends SimulateBaseDao{
         SqlSession session = null;
         try{
             session = getSqlSession();
-//            Map<String, Object> params = new HashMap<String, Object>();
-//            params.put("userId",userId);
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("user",user);
+            params.put("branchCode","QLJNWS0102");
 
-            return session.selectList("db.table.user.queryTotalCountClassBar", 2950L);
+            Object value =  session.selectList("db.table.user.queryTotalCountClassBar", params);
+            System.out.println(params);
+            return value;
         }finally {
             session.close();
         }
 
-    }
-
-    public class User{
-        private Long id;
-        private String name;
-
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
     }
 
 }

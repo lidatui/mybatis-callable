@@ -4,13 +4,21 @@
 
 <mapper namespace="db.table.user">
 
+    <resultMap type="com.github.miemiedev.mybatis.callable.User" id="userMap">
+        <id property="id" column="USER_ID" />
+        <result property="name" column="USER_NAME"/>
+        <result property="type" column="USER_TYPE"/>
+    </resultMap>
+
     <resultMap type="java.util.HashMap" id="HashMap"></resultMap>
+
     <select id="queryTotalCountClassBar" statementType="CALLABLE">
         <![CDATA[
-            {call P_CSM_CUST_COUNT(
-                #{retCode,mode=OUT,jdbcType=NUMERIC},
+            {call test_proc(
+                #{retCode,mode=OUT,jdbcType=INTEGER},
                 #{acResult,mode=OUT,jdbcType=CURSOR, resultMap=HashMap},
-                #{userId}
+                #{user.type},
+                #{branchCode}
             )}
         ]]>
     </select>
