@@ -4,20 +4,15 @@
 
 <mapper namespace="db.table.user">
 
-    <resultMap type="com.github.miemiedev.mybatis.callable.User" id="userMap">
-        <id property="id" column="USER_ID" />
-        <result property="name" column="USER_NAME"/>
-        <result property="type" column="USER_TYPE"/>
-    </resultMap>
 
-    <resultMap type="java.util.HashMap" id="HashMap"></resultMap>
+    <resultMap type="java.util.HashMap" id="hashMap"></resultMap>
 
-    <select id="queryTotalCountClassBar" statementType="CALLABLE">
+    <select id="query" statementType="CALLABLE">
         <![CDATA[
             {call test_proc(
                 #{retCode,mode=OUT,jdbcType=INTEGER},
-                #{acResult,mode=OUT,jdbcType=CURSOR,javaType=ResultSet, resultMap=HashMap},
-                #{user.type},
+                #{acResult,mode=OUT,jdbcType=CURSOR,javaType=ResultSet, resultMap=hashMap},
+                #{userType},
                 #{branchCode}
             )}
         ]]>

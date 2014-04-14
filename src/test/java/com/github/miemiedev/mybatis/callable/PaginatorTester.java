@@ -17,25 +17,20 @@ public class PaginatorTester extends SimulateBaseDao{
 
     @Test
     public void controllerMethod() throws IOException {
-        User user = new User();
-        user.setId(2950L);
-        user.setName("libin");
-        user.setType("yhfl_nbyh");
-        Object list = queryTotalCountClassBar(user);
-
+        Object list = query("yhfl_nbyh", "QLJNWS0102");
         System.out.println(list);
 
     }
 
-    public Object queryTotalCountClassBar(User user){
+    public Object query(String userType, String branchCode){
         SqlSession session = null;
         try{
             session = getSqlSession();
             Map<String, Object> params = new HashMap<String, Object>();
-            params.put("user",user);
-            params.put("branchCode","QLJNWS0102");
+            params.put("userType",userType);
+            params.put("branchCode",branchCode);
 
-            Object value =  session.selectList("db.table.user.queryTotalCountClassBar", params);
+            Object value =  session.selectList("db.table.user.query", params);
             System.out.println(params);
             return value;
         }finally {
