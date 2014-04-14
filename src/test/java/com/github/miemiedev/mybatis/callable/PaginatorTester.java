@@ -30,7 +30,7 @@ public class PaginatorTester extends SimulateBaseDao{
             params.put("userType",userType);
             params.put("branchCode",branchCode);
 
-            Object value =  session.selectList("db.table.user.query", params);
+            Object value =  session.selectOne("db.table.user.query", params);
             System.out.println(params);
             return value;
         }finally {
