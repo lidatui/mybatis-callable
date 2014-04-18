@@ -13,7 +13,7 @@ import java.util.Map;
  * @author miemiedev
  */
 
-public class PaginatorTester extends SimulateBaseDao{
+public class CallableTester extends SimulateBaseDao{
 
     @Test
     public void controllerMethod() throws IOException {
