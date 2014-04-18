@@ -16,7 +16,7 @@ import java.util.Map;
 public class CallableTester extends SimulateBaseDao{
 
     @Test
-    public void controllerMethod() throws IOException {
+    public void controllerMethod() {
         Map<String, Object> map = query("yhfl_nbyh", "QLJNWS0102");
         System.out.println(map);
     }
@@ -38,7 +38,7 @@ public class CallableTester extends SimulateBaseDao{
     }
 
     @Test
-    public void controllerMethod2() throws IOException {
+    public void controllerMethod2() {
         List<Map<String, Object>> list = query2("yhfl_nbyh", "QLJNWS0102");
         System.out.println(list);
     }
@@ -59,7 +59,7 @@ public class CallableTester extends SimulateBaseDao{
     }
 
     @Test
-    public void controllerMethod3() throws IOException {
+    public void controllerMethod3() {
         Integer retrunCode = query3("yhfl_nbyh", "QLJNWS0102");
         System.out.println(retrunCode);
     }
