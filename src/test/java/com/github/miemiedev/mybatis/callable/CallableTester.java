@@ -60,8 +60,8 @@ public class CallableTester extends SimulateBaseDao{
 
     @Test
     public void controllerMethod3() {
-        Integer retrunCode = query3("yhfl_nbyh", "QLJNWS0102");
-        System.out.println(retrunCode);
+        Integer returnCode = query3("yhfl_nbyh", "QLJNWS0102");
+        System.out.println(returnCode);
     }
 
     public Integer query3(String userType, String branchCode){
