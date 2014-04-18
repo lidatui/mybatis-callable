@@ -58,4 +58,25 @@ public class CallableTester extends SimulateBaseDao{
         }
     }
 
+    @Test
+    public void controllerMethod3() throws IOException {
+        Integer retrunCode = query3("yhfl_nbyh", "QLJNWS0102");
+        System.out.println(retrunCode);
+    }
+
+    public Integer query3(String userType, String branchCode){
+        SqlSession session = null;
+        try{
+            session = getSqlSession();
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("userType",userType);
+            params.put("branchCode",branchCode);
+            //存储过程只有一个返回值，并且不是游标，则使用selectOne
+            Integer value =  session.selectOne("db.table.user.query3", params);
+            return value;
+        }finally {
+            session.close();
+        }
+    }
+
 }

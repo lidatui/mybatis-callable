@@ -31,5 +31,16 @@
     </select>
 
 
+    <select id="query3" statementType="CALLABLE">
+        <![CDATA[
+            {call test_proc3(
+                #{retCode,mode=OUT,jdbcType=INTEGER},
+                #{userType},
+                #{branchCode}
+            )}
+        ]]>
+    </select>
+
+
 
 </mapper>

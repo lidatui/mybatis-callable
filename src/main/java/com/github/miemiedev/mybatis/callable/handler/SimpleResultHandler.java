@@ -24,8 +24,12 @@ public class SimpleResultHandler implements CallableResultHandler {
                 map.put(parameterMapping.getProperty(),result.get(parameterMapping.getProperty()));
             }
         }
-        if(list.size() == 1 && list.get(0) instanceof List){
-            return list.get(0);
+        if(list.size() == 1){
+            Object value = list.get(0);
+            if(value instanceof List){
+                return value;
+            }
+            return list;
         }
         list.clear();
         list.add(map);
