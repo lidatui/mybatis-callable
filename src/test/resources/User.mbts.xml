@@ -7,6 +7,7 @@
 
     <resultMap type="java.util.HashMap" id="hashMap"></resultMap>
 
+    <!-- 只有标记为CALLABLE的才会走拦截器 -->
     <select id="query" statementType="CALLABLE">
         <![CDATA[
             {call test_proc(
@@ -17,5 +18,18 @@
             )}
         ]]>
     </select>
+
+
+    <select id="query2" statementType="CALLABLE">
+        <![CDATA[
+            {call test_proc2(
+                #{acResult,mode=OUT,jdbcType=CURSOR,javaType=ResultSet, resultMap=hashMap},
+                #{userType},
+                #{branchCode}
+            )}
+        ]]>
+    </select>
+
+
 
 </mapper>

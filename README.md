@@ -1,4 +1,5 @@
-mybatis-callable
-================
+支持Mybatis的版本 >= 3.1
 
-不破坏接口规范来查询存储过程
+使用方法 -->  [PaginatorTester.java](https://github.com/miemiedev/mybatis-callable/blob/master/src/test/java/com/github/miemiedev/mybatis/callable/PaginatorTester.java)
+              [User.mbts.xml](https://github.com/miemiedev/mybatis-callable/blob/master/src/test/resources/User.mbts.xml)
+插件配置 -->  [mybatis-config.xml](https://github.com/miemiedev/mybatis-callable/blob/master/src/test/resources/mybatis-config.xml)

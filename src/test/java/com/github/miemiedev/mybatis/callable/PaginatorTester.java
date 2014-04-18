@@ -17,26 +17,45 @@ public class PaginatorTester extends SimulateBaseDao{
 
     @Test
     public void controllerMethod() throws IOException {
-        Object list = query("yhfl_nbyh", "QLJNWS0102");
-        System.out.println(list);
-
+        Map<String, Object> map = query("yhfl_nbyh", "QLJNWS0102");
+        System.out.println(map);
     }
 
-    public Object query(String userType, String branchCode){
+    public Map<String, Object> query(String userType, String branchCode){
         SqlSession session = null;
         try{
             session = getSqlSession();
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("userType",userType);
             params.put("branchCode",branchCode);
-
-            Object value =  session.selectOne("db.table.user.query", params);
-            System.out.println(params);
+            //存储过程返回多个参数，则使用selectOne返回Map
+            //key为返回参数名，value为返回值
+            Map<String, Object> value =  session.selectOne("db.table.user.query", params);
             return value;
         }finally {
             session.close();
         }
+    }
 
+    @Test
+    public void controllerMethod2() throws IOException {
+        List<Map<String, Object>> list = query2("yhfl_nbyh", "QLJNWS0102");
+        System.out.println(list);
+    }
+
+    public List<Map<String, Object>> query2(String userType, String branchCode){
+        SqlSession session = null;
+        try{
+            session = getSqlSession();
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("userType",userType);
+            params.put("branchCode",branchCode);
+            //存储过程只返回一个游标，则使用selectList返回List
+            List<Map<String, Object>> value =  session.selectList("db.table.user.query2", params);
+            return value;
+        }finally {
+            session.close();
+        }
     }
 
 }
