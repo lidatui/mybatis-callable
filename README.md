@@ -4,3 +4,15 @@
 
 插件配置 -->  [mybatis-config.xml](https://github.com/miemiedev/mybatis-callable/blob/master/src/test/resources/mybatis-config.xml)
 
+Downloading from the Maven central repository
+```xml
+<dependencies>
+  ...
+    <dependency>
+        <groupId>com.github.miemiedev</groupId>
+        <artifactId>mybatis-callable</artifactId>
+        <version>1.0</version>
+    </dependency>
+ ...
+</dependencies>
+```

@@ -3,10 +3,42 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
 
     <groupId>com.github.miemiedev</groupId>
     <artifactId>mybatis-callable</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+    <name>mybatis-callable</name>
+    <description>A Mybatis plugin, implementation of database query Stored Procedure</description>
+    <url>https://github.com/miemiedev/mybatis-callable</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:git@github.com:miemiedev/mybatis-callable.git</connection>
+        <developerConnection>scm:git:git@github.com:miemiedev/mybatis-callable.git</developerConnection>
+        <url>git@github.com:miemiedev/mybatis-callable.git</url>
+    </scm>
+    <developers>
+        <developer>
+            <id>miemiedev</id>
+            <name>Bin Li</name>
+            <email>dev@miemie.li</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <build>
         <plugins>
@@ -19,8 +51,22 @@
                     <target>1.5</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+
 
     <dependencies>
         <dependency>
@@ -59,15 +105,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <distributionManagement>
-        <repository>
-            <id>qlzq-releases</id>
-            <url>http://10.29.20.209:8080/nexus/content/repositories/qlzq-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>qlzq-snapshots</id>
-            <url>http://10.29.20.209:8080/nexus/content/repositories/qlzq-snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
